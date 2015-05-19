@@ -32,9 +32,10 @@ XVFB_BINARIES_URL=https://raw.githubusercontent.com/methyl/heroku-buildpack-slim
 
 echo "-----> Fetching and extracting Xvfb binaries"
 mkdir -p $BUILD_DIR/vendor/xvfb
-curl -s $XVFB_BINARIES_URL | tar xz -C $BUILD_DIR/vendor/xvfb
+curl -s $XVFB_BINARIES_URL | tar xz -C $BUILD_DIR/vendor
 
 mkdir -p $BUILD_DIR/bin
+ls $BUILD_DIR/vendor/xvfb
 mv $BUILD_DIR/vendor/xvfb/xkbcomp $BUILD_DIR/bin
 
 echo "-----> exporting PATH and LIBRARY_PATH"
