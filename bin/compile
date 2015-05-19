@@ -28,10 +28,11 @@ mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/slimerjs
 
 # Download, extract and set up Xvfb
 
-XVFB_BINARIES_URL=https://github.com/methyl/heroku-buildpack-slimerjs/raw/master/xvfb.tar.gz
+XVFB_BINARIES_URL=https://raw.githubusercontent.com/methyl/heroku-buildpack-slimerjs/master/xvfb.tar.gz
 
 echo "-----> Fetching and extracting Xvfb binaries"
-curl -s $XVFB_BINARIES_URL | tar xz -C $BUILD_DIR/vendor
+mkdir -p $BUILD_DIR/vendor/xvfb
+curl -s $XVFB_BINARIES_URL | tar xz -C $BUILD_DIR/vendor/xvfb
 
 mkdir -p $BUILD_DIR/bin
 mv $BUILD_DIR/vendor/xkbcomp $BUILD_DIR/bin
