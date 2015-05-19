@@ -2,10 +2,9 @@
 
 cat << EOF
 ---
-addons:
-  - shared-database:5mb
 config_vars:
-  PATH: bin:/usr/bin:/bin
+  PATH: "/usr/local/bin:/usr/bin:/bin:/app/vendor/slimerjs"
+  LD_LIBRARY_PATH: "/usr/local/lib:/usr/lib:/lib:/app/vendor/slimerjs"
 default_process_types:
-  hello: cat hello.txt
+  console: "vendor/slimerjs/slimerjs"
 EOF
