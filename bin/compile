@@ -13,6 +13,7 @@ ARCHIVE_NAME=slimerjs-${VERSION}-linux-x86_64
 FILE_NAME=${ARCHIVE_NAME}.tar.bz2
 BUILDPACK_SLIMERJS_PACKAGE=http://download.slimerjs.org/releases/${VERSION}/${FILE_NAME}
 
+# Download, extract and set up SlimerJS
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   echo "-----> Fetching SlimerJS ${VERSION} binaries at ${BUILDPACK_SLIMERJS_PACKAGE}"
@@ -25,8 +26,18 @@ mkdir -p $BUILD_DIR/vendor
 tar jxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
 mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vendor/slimerjs
 
+# Download, extract and set up Xvfb
+
+XVFB_BINARIES_URL=https://github.com/methyl/heroku-buildpack-slimerjs/raw/master/xvfb.tar.gz
+
+echo "-----> Fetching and extracting Xvfb binaries"
+curl -s $XVFB_BINARIES_URL | tar xz -C $BUILD_DIR/vendor
+
+mkdir -p $BUILD_DIR/bin
+mv $BUILD_DIR/vendor/xkbcomp $BUILD_DIR/bin
+
 echo "-----> exporting PATH and LIBRARY_PATH"
-PROFILE_PATH="$BUILD_DIR/.profile.d/phantomjs.sh"
+PROFILE_PATH="$BUILD_DIR/.profile.d/slimerjs.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="$PATH:vendor/slimerjs"' >> $PROFILE_PATH
 echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:vendor/slimerjs"' >> $PROFILE_PATH
