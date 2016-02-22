@@ -20,4 +20,4 @@ mv $CACHE_DIR/$SLIMERJS_ARCHIVE_NAME $BUILD_DIR/vendor/slimerjs
 echo "-----> exporting PATH and LIBRARY_PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/slimerjs.sh"
 mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$PATH:/app/vendor/slimerjs' >> $PROFILE_PATH
+echo 'export PATH="$PATH:/app/vendor/slimerjs"' >> $PROFILE_PATH
