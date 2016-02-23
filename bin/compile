@@ -19,9 +19,6 @@ mv $CACHE_DIR/$SLIMERJS_ARCHIVE_NAME $BUILD_DIR/vendor/slimerjs
 
 sed -i.bak s/usr\\/share\\/fonts/app\\/usr-s-fonts/g $1/.apt/usr/bin/Xvfb
 ln -s /app/.apt/usr/share/fonts $1/usr-s-fonts
-mkdir -p /app/.fonts
-find /usr/share/fonts/truetype/ -name \*.ttf -exec cp {} /app/.fonts \;
-fc-cache -fv
 
 echo "-----> exporting PATH and LIBRARY_PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/slimerjs.sh"
