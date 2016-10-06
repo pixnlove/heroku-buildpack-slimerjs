@@ -14,6 +14,7 @@ SLIMERJS_BINARIES_URL=http://download.slimerjs.org/releases/${VERSION}/${SLIMERJ
 
 echo "-----> Fetching and extracting SlimerJS binaries"
 mkdir -p $BUILD_DIR/vendor
+echo "DL: $SLIMERJS_BINARIES_URL"
 curl -s $SLIMERJS_BINARIES_URL | tar x -C $CACHE_DIR
 mv $CACHE_DIR/$SLIMERJS_ARCHIVE_NAME $BUILD_DIR/vendor/slimerjs
 
