@@ -6,7 +6,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 # config
-VERSION="0.9.5"
+VERSION="0.9.6"
 
 # Buildpack URL
 SLIMERJS_ARCHIVE_NAME=slimerjs-${VERSION}
@@ -14,7 +14,7 @@ SLIMERJS_BINARIES_URL=http://download.slimerjs.org/releases/${VERSION}/${SLIMERJ
 
 echo "-----> Fetching and extracting SlimerJS binaries"
 mkdir -p $BUILD_DIR/vendor
-curl -s $SLIMERJS_BINARIES_URL | tar xj -C $CACHE_DIR
+curl -s $SLIMERJS_BINARIES_URL | tar x -C $CACHE_DIR
 mv $CACHE_DIR/$SLIMERJS_ARCHIVE_NAME $BUILD_DIR/vendor/slimerjs
 
 sed -i.bak s/usr\\/share\\/fonts/app\\/usr-s-fonts/g $1/.apt/usr/bin/Xvfb
