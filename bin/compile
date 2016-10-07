@@ -10,7 +10,7 @@ VERSION="0.9.6"
 
 # Buildpack URL
 SLIMERJS_ARCHIVE_NAME=slimerjs-${VERSION}
-SLIMERJS_BINARIES_URL=http://download.slimerjs.org/releases/${VERSION}/${SLIMERJS_ARCHIVE_NAME}-linux-x86_64.tar.bz2
+SLIMERJS_BINARIES_URL=https://download.slimerjs.org/releases/${VERSION}/${SLIMERJS_ARCHIVE_NAME}-linux-x86_64.tar.bz2
 
 echo "-----> Fetching and extracting SlimerJS binaries"
 mkdir -p $BUILD_DIR/vendor
