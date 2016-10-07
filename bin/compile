@@ -6,17 +6,17 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 # config
-VERSION="0.9.6"
+VERSION="0.10.1"
 
 # Buildpack URL
 SLIMERJS_ARCHIVE_NAME=slimerjs-${VERSION}
-SLIMERJS_BINARIES_URL=https://download.slimerjs.org/releases/${VERSION}/${SLIMERJS_ARCHIVE_NAME}-linux-x86_64.tar.bz2
+SLIMERJS_BINARIES_URL=https://download.slimerjs.org/releases/${VERSION}/${SLIMERJS_ARCHIVE_NAME}.zip
 
 echo "-----> Fetching and extracting SlimerJS binaries"
 mkdir -p $BUILD_DIR/vendor
 echo "DL: $SLIMERJS_BINARIES_URL"
-curl -O tmp.tar.bz2 $SLIMERJS_BINARIES_URL 
-tar xf tmp.tar.bz2 -C $CACHE_DIR
+curl -O tmp.zip $SLIMERJS_BINARIES_URL 
+unzip tmp.tar.bz2 -d $CACHE_DIR
 mv $CACHE_DIR/$SLIMERJS_ARCHIVE_NAME $BUILD_DIR/vendor/slimerjs
 
 sed -i.bak s/usr\\/share\\/fonts/app\\/usr-s-fonts/g $1/.apt/usr/bin/Xvfb
@@ -26,3 +26,4 @@ echo "-----> exporting PATH and LIBRARY_PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/slimerjs.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="$PATH:/app/vendor/slimerjs"' >> $PROFILE_PATH
+echo 'export SLIMERJSLAUNCHER=/usr/bin/firefox' >> $PROFILE_PATH
