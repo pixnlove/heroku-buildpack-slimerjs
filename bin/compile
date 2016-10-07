@@ -15,8 +15,8 @@ SLIMERJS_BINARIES_URL=https://download.slimerjs.org/releases/${VERSION}/${SLIMER
 echo "-----> Fetching and extracting SlimerJS binaries"
 mkdir -p $BUILD_DIR/vendor
 echo "DL: $SLIMERJS_BINARIES_URL"
-curl -O tmp.zip $SLIMERJS_BINARIES_URL 
-unzip tmp.tar.bz2 -d $CACHE_DIR
+curl -o tmp.zip $SLIMERJS_BINARIES_URL 
+unzip tmp.zip -d $CACHE_DIR
 mv $CACHE_DIR/$SLIMERJS_ARCHIVE_NAME $BUILD_DIR/vendor/slimerjs
 
 sed -i.bak s/usr\\/share\\/fonts/app\\/usr-s-fonts/g $1/.apt/usr/bin/Xvfb
